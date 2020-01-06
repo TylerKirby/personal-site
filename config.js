@@ -25,7 +25,7 @@ module.exports = {
   author: {
     name: 'Tyler Kirby',
     photo: '/profile.jpg',
-    bio: 'Data Scientist at QDivision',
+    bio: 'Data scientist, digital classicist',
     contacts: {
       email: '#',
       telegram: '#',
