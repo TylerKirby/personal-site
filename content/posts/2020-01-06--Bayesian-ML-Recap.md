@@ -2,11 +2,11 @@
 title: Introduction to Bayesian Machine Learning
 date: "2020-01-06"
 template: "post"
-draft: true
+draft: false
 slug: "/posts/bayesian-ml-recap"
 category: "Machine Learning"
-# tags:
-#   - "Theory of Machine Learning"
+tags:
+  - "Machine Learning"
 description: "A tutorial on probabilistic learning"
 ---
 Many elementary machine learning algorithms are taught from a Frequentist point of view where the primary goal is risk minimization achieved by fitting a set of parameters. Bayesian machine learning provides an alternative view that focuses more on probability. We want to maximize the probability of certain outcomes and minimize those of other outcomes. But even more so than this, Bayesian machine learning is often concerned with the problem of uncertainty: how do we know what we know and when do we know that we do not know? In a world where complex decision making is increasingly delegated to machines, it is critical that we give them the ability to recognize when they do not have enough information to sufficiently address a problem. In this post, I will survey the most important ideas in Bayesian machine learning and show where they can be most readily applied.
@@ -65,3 +65,38 @@ $$
 \mathbb{E}[L(\theta, \hat{\theta})|D] = \int L(\theta, \hat{\theta}) p(\theta|D) d \theta
 $$
 Minizing the risk is achieved by selecting the estimate the yields the lowest possible loss. This becomes the fundamental project of Bayesian machine learning and is achieved only by computing a posterior like the one above.
+
+## Bayesian Linear Regression
+All of the above is utilize to reformalize traditional Frequentist algorithms in a Bayesian way. Consider linear regression. We estimate some real number $y$ using an input vector $x$ and some weight vector $w$. We include a factor $\epsilon$ to account for any noise in the observations.
+$$
+y = x^T \cdot w + \epsilon
+$$
+The goal is to minimize some loss function $L(\hat{y}, y)$ by adjusting our weight matrix. In a Frequentist setting, we achieve thise using methods like ordinary least squares. We can just as easily minimize the loss with a Bayesian model. To estimate our weight vector $w$, we begin by placing a prior on it. In this case, we will use a multidimensional Gaussian distribution.
+$$
+p(w|\mu, \Sigma) = N(w; \mu, \Sigma)
+$$
+The Gaussian distribution has many useful mathematical propoperties which makes it an excellent choice for a prior. We will also need to specify our prior for the $\epsilon$ noise variable. If we assume our noise to be small, we may wish to model it as a zero mean Gaussian random variable:
+$$
+p(\epsilon|\sigma^2) = N(\epsilon; 0, \sigma^2I)
+$$
+Note the freedom we have when designing our prior. If we have specific knowledge about the structure of the noise for a particular problem, we can encode that directing into the prior belief. For example, if we knew that the noise is higher for values closer to zero and lower elsewhere, we may use an Exponential distribution.
+
+We now need to specify a variable $f = Xw$ to account for our data matrix. Since we already have a prior on $w$, our belief of $f$ is just a linear transformation of a multivariate Gaussian distribution which is itself a Gaussian distribution:
+$$
+p(f|X, \mu, \Sigma) = N(f; X\mu, X \Sigma X^T)
+$$
+The above is derived using the affine transformation property of Gaussian distributions:
+$$
+y = Ax + b \\
+p(y| \mu, \Sigma, A, b) = N(y; A\mu + b, A \Sigma A^T)
+$$
+
+We need to specify our belief of $y$ as well. Since $y=Xw + \epsilon$ which is a sum of two Gaussian distributions, we may easily derive our belief on $y$ as follows:
+$$
+p(y|X, \mu, \Sigma, \sigma^2) = N(y; X \mu, X \Sigma X^T + \sigma^2 I)
+$$
+
+Some more algebra which I will gloss over is required before we formulate our posterior. We need to calculate the covariance of $w$ and $y$ so that we can form a joint distirbution of those two variables. This again results in a multivariate Gaussian. With that joint distribution, we can finally formulate the posterior:
+$$
+p(w| D, m, \Sigma, \sigma^2)
+$$
