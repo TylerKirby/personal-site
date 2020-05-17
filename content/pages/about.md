@@ -3,7 +3,5 @@ title: "About me"
 template: "page"
 ---
 
-Currently I work at QDivision as a data scientist. I am also studying computer science at Washington University.
-
-I started this blog to write about topics in machine learning as a way to study for exams in my courses.
-
+I'm a Senior Data Scientist at a technology startup and am currently finishing my masters in computer science.
+In addition to data science, I care deeply about literature and music, and hope to write about both here as well.

@@ -2,7 +2,7 @@
 title: Introduction to Bayesian Machine Learning
 date: "2020-01-06"
 template: "post"
-draft: false
+draft: true
 slug: "/posts/bayesian-ml-recap"
 category: "Machine Learning"
 tags:
@@ -98,5 +98,12 @@ $$
 
 Some more algebra which I will gloss over is required before we formulate our posterior. We need to calculate the covariance of $w$ and $y$ so that we can form a joint distirbution of those two variables. This again results in a multivariate Gaussian. With that joint distribution, we can finally formulate the posterior:
 $$
-p(w| D, m, \Sigma, \sigma^2)
+p(w| D, m, \Sigma, \sigma^2) = N(w; \mu_{w|D}, \Sigma_{w|D}) \\
+\mu_{w|D} = \mu + \Sigma X^T (X \Sigma X^T + \sigma^2 I)^{-1} (y - X \mu) \\
+\Sigma_{w|D} = \Sigma - \Sigma X^T (X \Sigma X^T + \sigma^2 I)^{-1} X \Sigma \\
+$$
+
+We can now use the posterior belief above to make predictions for unseen data points. Let $X^*$ be the test input and $y^*$ be the test ouput we wish to predict. Below we formulate our belief of $y^*$.
+$$
+p(y^* | D, \mu, \Sigma, \sigma^2)
 $$

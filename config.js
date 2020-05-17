@@ -27,12 +27,8 @@ module.exports = {
     photo: '/profile.jpg',
     bio: 'Data scientist, digital classicist',
     contacts: {
-      email: '#',
-      telegram: '#',
-      twitter: '#',
-      github: '#',
-      rss: '#',
-      vkontakte: '#'
+      email: 'mailto:tyler.kirby9398@gmail.com',
+      github: 'https://github.com/TylerKirby',
     }
   }
 };
