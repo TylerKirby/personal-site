@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = {
-  url: 'https://lumen.netlify.com',
+  url: 'https://tylerkirby.github.io/',
   title: 'Tyler Kirby',
-  subtitle: 'Data scientist, student',
+  subtitle: 'Data scientist, classicist',
   copyright: '© All rights reserved.',
   disqusShortname: '',
   postsPerPage: 4,
@@ -25,7 +25,7 @@ module.exports = {
   author: {
     name: 'Tyler Kirby',
     photo: '/profile.jpg',
-    bio: 'Data scientist, digital classicist',
+    bio: 'Data scientist, classicist',
     contacts: {
       email: 'mailto:tyler.kirby9398@gmail.com',
       github: 'https://github.com/TylerKirby',

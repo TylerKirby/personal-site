@@ -11,7 +11,7 @@ module.exports = {
     copyright: siteConfig.copyright,
     disqusShortname: siteConfig.disqusShortname,
     menu: siteConfig.menu,
-    author: siteConfig.author
+    author: siteConfig.author,
   },
   plugins: [
     {
@@ -133,7 +133,7 @@ module.exports = {
           {
             site {
               siteMetadata {
-                url
+                siteUrl: url
               }
             }
             allSitePage(
@@ -151,7 +151,7 @@ module.exports = {
         `,
         output: '/sitemap.xml',
         serialize: ({ site, allSitePage }) => allSitePage.edges.map((edge) => ({
-          url: site.siteMetadata.url + edge.node.path,
+          url: site.siteMetadata.siteUrl + edge.node.path,
           changefreq: 'daily',
           priority: 0.7
         }))
