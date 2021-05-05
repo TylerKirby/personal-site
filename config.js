@@ -29,6 +29,7 @@ module.exports = {
     contacts: {
       email: 'mailto:tyler.kirby9398@gmail.com',
       github: 'https://github.com/TylerKirby',
+      twitter: 'tylerkirby9398',
     }
   }
 };
